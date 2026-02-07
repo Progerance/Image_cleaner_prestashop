@@ -1,53 +1,151 @@
-# Script de Suppression d'Images Inutilisées pour PrestaShop
+# 🧹 Orphan Image Cleaner pour PrestaShop
 
-Ce script PHP est conçu pour aider les administrateurs de sites PrestaShop à nettoyer leurs dossiers d'images en supprimant les fichiers d'images inutilisés. Il parcourt récursivement le dossier d'images de PrestaShop, vérifie si chaque image est référencée dans la base de données, et supprime celles qui ne sont plus utilisées, libérant ainsi de l'espace disque précieux.
+Script PHP professionnel avec interface web pour nettoyer les images orphelines dans PrestaShop.
 
-## Fonctionnalités
+![PrestaShop](https://img.shields.io/badge/PrestaShop-1.7%20%7C%208.x%20%7C%209.x-green)
+![License](https://img.shields.io/badge/license-AFL%203.0-orange)
 
-- **Identification des Images Inutilisées** : Le script identifie de manière efficace les images non référencées dans la base de données de PrestaShop.
-- **Suppression Sécurisée** : Offre la possibilité de visualiser les images inutilisées (mode d'affichage) avant de procéder à leur suppression (mode de suppression).
-- **Affichage de la Taille des Images** : Calcule et affiche la taille des images inutilisées en mégaoctets (MB), fournissant une estimation claire de l'espace disque potentiellement récupérable.
-- **Facilité d'Utilisation** : Conçu pour être facile à utiliser, nécessitant peu ou pas de configuration pour la plupart des installations de PrestaShop.
+## Description
+
+Identifiez et supprimez les images orphelines (non référencées en base de données) du dossier `/img/p/` pour libérer de l'espace disque.
+
+## Fonctionnalités principales
+
+### Interface moderne
+- Design responsive adapté desktop/mobile
+- Multilingue (Français / English)
+- Statistiques en temps réel
+
+### Gestion des images
+- Groupement automatique par ID avec tous les formats
+- Aperçu visuel avec vignettes
+- Tri par taille (format le plus léger en premier)
+
+### Outils puissants
+- Recherche avec wildcards : `174986*.avif`
+- Pagination : 25/50/100/200 par page
+- Sélection multiple ou suppression globale
+- Expand/Collapse des groupes
+
+### Sécurité
+- Protection par token
+- Validation stricte des chemins
+- Confirmation avant suppression
+- Logs détaillés
 
 ## Prérequis
 
-- PrestaShop 1.7.x (Testé jusqu'à la version 1.7.7, mais devrait être compatible avec les versions ultérieures)
-- Accès au serveur où PrestaShop est hébergé
-- Permissions nécessaires pour exécuter des scripts PHP et supprimer des fichiers sur le serveur
+- PrestaShop 1.7.x / 8.x / 9.x
+- PHP 7.1+ (8.0+ recommandé)
+- Permissions lecture/écriture sur `/img/p/`
 
 ## Installation
 
-1. Téléchargez le script PHP sur votre serveur, dans le dossier racine de votre installation PrestaShop.
-2. Assurez-vous que le script a les permissions nécessaires pour lire les dossiers d'images et écrire dans les logs si nécessaire.
+1. Téléchargez `orphan-image-cleaner.php`
+2. Uploadez à la racine de PrestaShop
+3. Configurez le token (ligne 22) :
+
+```php
+$securityToken = 'VOTRE_TOKEN_SECRET';
+```
+
+Générez un token sécurisé :
+
+```bash
+openssl rand -hex 32
+```
 
 ## Utilisation
 
-### Mode d'Affichage
+Accédez au script via votre navigateur :
 
-Pour visualiser les images inutilisées sans les supprimer, ouvrez le script dans un navigateur ou exécutez-le via la ligne de commande avec le mode réglé sur `0`.
-
-```php
-$mode = 0; // Mode d'affichage
+```
+https://votre-site.com/orphan-image-cleaner.php?token=VOTRE_TOKEN
 ```
 
-### Mode de Suppression
+### Workflow recommandé
 
-Pour supprimer les images inutilisées, changez le mode à `1` et exécutez à nouveau le script.
+1. Analysez les statistiques
+2. Filtrez avec la recherche si besoin
+3. Vérifiez les aperçus
+4. Sélectionnez les images à supprimer
+5. Confirmez la suppression
 
-```php
-$mode = 1; // Mode de suppression
-```
+### Exemples de recherche
 
-**Attention :** Utilisez le mode de suppression avec prudence pour éviter la perte de données importantes.
+- `174986` - Tous les formats de l'image 174986
+- `*-large_default.jpg` - Tous les large_default JPG
+- `174986*avif` - Tous les AVIF de l'image 174986
+
+## Formats supportés
+
+JPG, JPEG, PNG, GIF, WebP, AVIF
+
+## Sécurité
+
+### Avant utilisation
+
+- ✅ Sauvegardez votre base de données
+- ✅ Sauvegardez le dossier `/img/p/`
+- ✅ Testez sur un environnement de staging
+
+### Protection intégrée
+
+- Token de sécurité obligatoire
+- Validation stricte des chemins
+- Confirmation avant suppression
+- Logs des résultats
+
+## Dépannage
+
+**Erreur "Access denied"**  
+Vérifiez que le token dans l'URL correspond au token du script
+
+**Pas d'images affichées**  
+Vérifiez les permissions de lecture sur `/img/p/`
+
+**Erreur de suppression**  
+Vérifiez les permissions d'écriture sur `/img/p/`
+
+**Timeout**  
+Augmentez `max_execution_time` dans php.ini
 
 ## Contribution
 
-Les contributions, qu'il s'agisse de rapports de bugs, de suggestions d'améliorations ou de demandes de pull, sont les bienvenues. Avant de contribuer, veuillez ouvrir une issue pour discuter des changements que vous souhaitez apporter.
+Les contributions sont bienvenues !
+
+- 🐛 Bug reports : Ouvrez une issue
+- 💡 Suggestions : Proposez des améliorations
+- 🔧 Pull requests : Soumettez vos modifications
+
+## Changelog
+
+### v3.2 (Actuelle)
+
+- Interface web complète
+- Support multilingue FR/EN
+- Recherche avec wildcards
+- Pagination avancée
+- Groupement par ID
+- Aperçus visuels
+- Sécurité renforcée
 
 ## Licence
 
-Ce script est fourni sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+Academic Free License (AFL 3.0)
+
+## Auteur
+
+**PROGERANCE - Dubois Arnaud**
+
+- Website: [progerance.com](https://progerance.com)
+- Email: support@progerance.com
+
+## Remerciements
+
+Un grand merci à **Yann Bonnaillie** pour sa contribution à l'amélioration de ce script.
 
 ---
 
-Ce formatage utilise des titres, des listes à puces, et des blocs de code pour une meilleure lisibilité et organisation dans le fichier `README.md` de GitHub.
+**⚠️ Avertissement** : Testez toujours en staging avant la production. La suppression est irréversible !
+
