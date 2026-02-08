@@ -43,7 +43,7 @@ Identifiez et supprimez les images orphelines (non référencées en base de don
 
 ## Installation
 
-1. Téléchargez `orphan-image-cleaner.php`
+1. Téléchargez `cleaner.php`
 2. Uploadez à la racine de PrestaShop
 3. Configurez le token (ligne 22) :
 
@@ -62,7 +62,7 @@ openssl rand -hex 32
 Accédez au script via votre navigateur :
 
 ```
-https://votre-site.com/orphan-image-cleaner.php?token=VOTRE_TOKEN
+https://votre-site.com/cleaner.php?token=VOTRE_TOKEN
 ```
 
 ### Workflow recommandé
