@@ -1,3 +1,5 @@
+![Image Cleaner PrestaShop](images/image_cleaner_prestashop.png)
+
 # 🧹 Orphan Image Cleaner pour PrestaShop
 
 Script PHP professionnel avec interface web pour nettoyer les images orphelines dans PrestaShop.
