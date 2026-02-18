@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/Orphan_Image_Cleaner_logo.png" alt="Image Cleaner PrestaShop">
+</p>
+
 ![Image Cleaner PrestaShop](images/image_cleaner_prestashop.png)
 
 # 🧹 Orphan Image Cleaner pour PrestaShop
